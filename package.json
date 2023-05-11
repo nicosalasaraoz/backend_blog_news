@@ -10,7 +10,7 @@
     "keywords": [
         "backend"
     ],
-    "author": "agustin sampayo",
+    "author": "salas nicolas",
     "license": "ISC",
     "dependencies": {
         "babel-cli": "^6.26.0",
