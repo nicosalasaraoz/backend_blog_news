@@ -36,7 +36,7 @@ export const crearNews = async (req, res) => {
 
 export const verNews = async (req, res) => {
     try {
-        const id = req.params.id;
+        const id = req.params;
         const noticiaBuscada = await NewsModel.findById(id);
         res.status(200).json(noticiaBuscada);
     } catch (error) {
