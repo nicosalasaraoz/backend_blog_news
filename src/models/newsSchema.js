@@ -17,24 +17,13 @@ const newsSchema = new Schema({
         type: String,
         require: true,
     },
-    img: {
-        img1: {
-            type: String,
-            trim: true,
-            require: true,
-        },
-        img2: {
-            type: String,
-            trim: true,
-            require: true,
-        },
-        img3: {
+    url: {
             type: String,
             trim: true,
             require: true,
         },
     },
-});
+);
 
 const NewsModel = mongoose.model("news", newsSchema);
 
