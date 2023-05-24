@@ -8,4 +8,5 @@ const connection = mongoose.connection;
 
 connection.once("open", () => {
     console.log("BD conectada");
+    console.log(process.env.URI);
 });
