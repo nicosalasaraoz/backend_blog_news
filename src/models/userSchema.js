@@ -17,11 +17,6 @@ const userSchema = new Schema({
         require: true,
         trim: true,
     },
-    repeatPass: {
-        type: String,
-        require: true,
-        trim: true,
-    },
     rol: {
         type: String,
         default: "user",

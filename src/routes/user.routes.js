@@ -72,15 +72,7 @@ router
                     min: 8,
                     max: 20,
                 })
-                .withMessage("La contraseña debe tener como minimo 8 caracteres y maximo 20"),
-            check("repetpass")
-                .notEmpty()
-                .withMessage("La contraseña es un dato obligatorio")
-                .isLength({
-                    min: 8,
-                    max: 20,
-                })
-                .withMessage("La contraseña debe tener como minimo 8 caracteres y maximo 20"),
+                .withMessage("La contraseña debe tener como minimo 8 caracteres y maximo 20")
         ],
         modificarUsuarios
     )

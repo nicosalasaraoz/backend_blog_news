@@ -67,7 +67,6 @@ export const crearUsuario = async (req, res) => {
         //encriptar la contraseña:
         const saltos = bcrypt.genSaltSync();
         savingUser.pass = bcrypt.hashSync(req.body.pass, saltos);
-        savingUser.repeatPass = bcrypt.hashSync(req.body.pass, saltos);
 
         //guardar el usuario en la BD:
         await savingUser.save();
