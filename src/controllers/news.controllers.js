@@ -28,7 +28,7 @@ export const crearNews = async (req, res) => {
         });
     } catch (error) {
         console.log(error);
-        res.status(400).json({
+        res.status(401).json({
             mensaje: "La noticia no se pudo guardar en la BD",
         });
     }
