@@ -22,18 +22,18 @@ router
                 .isString()
                 .isLength({
                     min: 4,
-                    max: 500,
+                    max: 10000,
                 })
-                .withMessage("El titulo debe tener entre 4 y 500 caracteres"),
+                .withMessage("El titulo debe tener entre 4 y 10000 caracteres"),
             check("description")
                 .notEmpty()
                 .withMessage("La descripción es un dato obligatorio")
                 .isString()
                 .isLength({
                     min: 8,
-                    max: 500,
+                    max: 10000,
                 })
-                .withMessage("La descripción debe tener entre 8 y 500 caracteres"),
+                .withMessage("La descripción debe tener entre 8 y 10000 caracteres"),
             check("content")
                 .notEmpty()
                 .withMessage("El contenido es un dato obligatorio")
@@ -63,18 +63,18 @@ router
                 .isString()
                 .isLength({
                     min: 4,
-                    max: 500,
+                    max: 10000,
                 })
-                .withMessage("El titulo debe tener entre 4 y 500 caracteres"),
+                .withMessage("El titulo debe tener entre 4 y 10000 caracteres"),
             check("description")
                 .notEmpty()
                 .withMessage("La descripción es un dato obligatorio")
                 .isString()
                 .isLength({
                     min: 8,
-                    max: 500,
+                    max: 10000,
                 })
-                .withMessage("La descripción debe tener entre 8 y 500 caracteres"),
+                .withMessage("La descripción debe tener entre 8 y 10000 caracteres"),
             check("content")
                 .notEmpty()
                 .withMessage("El contenido es un dato obligatorio")
