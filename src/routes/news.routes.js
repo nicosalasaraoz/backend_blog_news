@@ -55,7 +55,7 @@ router
             check("category")
                 .notEmpty()
                 .withMessage("La categoria es un dato obligatorio")
-                .isIn(["economia", "deportes", "mundo", "espectaculos", "politica", "opinion"])
+                .isIn(["Economia", "Deporte", "Mundo", "Espectaculos", "Politica", "Opinion"])
                 .withMessage("Debe ingresar una categoria valida"),
             check("title")
                 .notEmpty()
@@ -87,6 +87,6 @@ router
         ],
         modificarNews
     )
-    .delete(validarJWT, eliminarNews);
+    .delete(eliminarNews);
 
 export default router;
