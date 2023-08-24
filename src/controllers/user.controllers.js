@@ -5,7 +5,7 @@ import generarJWT from "../helpers/jwt";
 
 export const login = async (req, res) => {
     try {
-        //validar datos con express-validator:
+       
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({
@@ -13,16 +13,16 @@ export const login = async (req, res) => {
             });
         }
 
-        //verificar email y password:
+        
         const { email, pass } = req.body;
-        //verificar email:
+       
         let usuario = await UserModel.findOne({ email });
         if (!usuario) {
             return res.status(400).json({
                 mensaje: "correo o password invalido - correo",
             });
         }
-        //verificar si el password enviado es igual al password encriptado en la BD:
+        
         const passwordValido = bcrypt.compareSync(pass, usuario.pass);
         if (!passwordValido) {
             return res.status(400).json({
@@ -30,7 +30,7 @@ export const login = async (req, res) => {
             });
         }
 
-        //generar el token y enviar la respuesta
+        
         const token = await generarJWT(usuario._id, usuario.email);
         return res.status(200).json({
             mensaje: "El usuario existe",
@@ -47,7 +47,7 @@ export const login = async (req, res) => {
 
 export const crearUsuario = async (req, res) => {
     try {
-        //validar datos con express-validator:
+        
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({
@@ -55,7 +55,7 @@ export const crearUsuario = async (req, res) => {
             });
         }
 
-        //verificar si el email ya existe:
+        
         let savingUser = await UserModel.findOne({ email: req.body.email });
         if (savingUser) {
             return res.status(400).json({
@@ -64,11 +64,11 @@ export const crearUsuario = async (req, res) => {
         }
         savingUser = new UserModel(req.body);
 
-        //encriptar la contraseña:
+        
         const saltos = bcrypt.genSaltSync();
         savingUser.pass = bcrypt.hashSync(req.body.pass, saltos);
 
-        //guardar el usuario en la BD:
+       
         await savingUser.save();
         res.status(201).json({
             mensaje: "El usuario se creó con exito",
