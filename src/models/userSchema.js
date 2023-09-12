@@ -17,6 +17,10 @@ const userSchema = new Schema({
         require: true,
         trim: true,
     },
+    rol: {
+        type: String,
+        required: true,
+    }
 });
 
 const UserModel = mongoose.model("user", userSchema);

@@ -36,7 +36,7 @@ export const login = async (req, res) => {
             mensaje: "El usuario existe",
             nombre: usuario.name,
             uid: usuario._id,
-            token,
+            token
         });
     } catch (error) {
         res.status(400).json({
@@ -74,6 +74,7 @@ export const crearUsuario = async (req, res) => {
             mensaje: "El usuario se creó con exito",
             usuario: savingUser.name,
             uid: savingUser._id,
+            rol: "admin"
         });
     } catch (error) {
         console.log(error);
@@ -109,6 +110,15 @@ export const buscarUsuario = async (req, res) => {
 };
 
 export const modificarUsuarios = async (req, res) => {
+   const Admin_1 = "nicolas";
+    if (
+        req.usuario === Admin_1
+    ) {
+        return res.status(400).json({
+        error: true,
+        message: "This user cannot be modified!",
+        });
+    }
     try {
         const id = req.params.id;
         console.log(req.body);
@@ -125,6 +135,22 @@ export const modificarUsuarios = async (req, res) => {
 };
 
 export const eliminarUsuarios = async (req, res) => {
+    const Admin_1 = "nicolas";
+    const SUPER_USER = "admin";
+
+    if (req.rol === SUPER_USER) {
+        return res.status(400).json({
+        error: true,
+        message: "This user cannot be erased!",
+        });
+    }
+
+    if(req.usuario === Admin_1){
+        return res.status(400).json({
+        error: true,
+        message: "This user cannot be erased!",
+    });
+    }
     try {
         const id = req.params.id;
         await UserModel.findByIdAndDelete(id);
@@ -137,4 +163,25 @@ export const eliminarUsuarios = async (req, res) => {
             mensaje: "El usuario no fue borrado",
         });
     }
+};
+
+const jwt = require("jsonwebtoken");
+const JWT_SECRET = process.env.SECRET_JWT;
+
+export const logout = async (req, res) => {
+  const { token } = req.body;
+  if (token) {
+    const userLog = jwt.verify(token, JWT_SECRET);
+    const userEmail = userLog.user.email;
+    const userFound = await UserModel.findOne({ userEmail });
+    if (userFound) {
+      userFound.token = "";
+      await UserModel.updateOne({ userEmail }, userFound);
+      res.status(200).json({ message: "Deslogueado", deslog: userFound });
+    } else {
+      res.status(500).json({ error: "Error" });
+    }
+  } else {
+    res.status(500).json({ error: "Error" });
+  }
 };
