@@ -36,7 +36,8 @@ export const login = async (req, res) => {
             mensaje: "El usuario existe",
             nombre: usuario.name,
             uid: usuario._id,
-            token
+            token,
+            rol: usuario.rol
         });
     } catch (error) {
         res.status(400).json({
